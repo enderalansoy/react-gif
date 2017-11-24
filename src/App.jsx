@@ -4,11 +4,13 @@ import axios from 'axios';
 import { loadProgressBar } from 'axios-progress-bar';
 import './App.css';
 
+const API_KEY = 'KAZ5aeC4SrlUli74p7KpuOH7CO6Pic7Y';
+
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      api: 'https://api.giphy.com/v1/gifs/search?api_key=KAZ5aeC4SrlUli74p7KpuOH7CO6Pic7Y',
+      api: `https://api.giphy.com/v1/gifs/search?api_key=${API_KEY}`,
       query: '',
       limit: 10,
       giphyUrls: { array: [] },
@@ -22,15 +24,11 @@ class App extends Component {
   }
 
   onClick() {
-    this.setState({ query: this.state.query }, () => {
-      this.getGifs();
-    });
+    this.setState({ query: this.state.query }, () => this.getGifs());
   }
 
   onChange(e) {
-    this.setState({ query: e.target.value }, () => {
-      this.getGifs();
-    });
+    this.setState({ query: e.target.value }, () => this.getGifs());
   }
 
   getGifs() {
